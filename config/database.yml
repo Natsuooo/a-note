@@ -11,7 +11,7 @@ default: &default
   encoding: utf8
   username: natsuo
   password: n00286203
-  database: twitter
+  database: a_note
 
 
 development:
