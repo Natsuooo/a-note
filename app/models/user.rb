@@ -9,6 +9,9 @@ class User < ApplicationRecord
                     uniqueness: {case_sensitive: false}
   
   has_secure_password
-  validates :password, presence: true, length: {minimum: 6}
+  VALIDE_PASSWORD_REGEX = /\A[a-z\d]+\z/i
+  validates :password,  presence: true, 
+                        length: {minimum: 6},
+                        format: {with: VALIDE_PASSWORD_REGEX}
   
 end

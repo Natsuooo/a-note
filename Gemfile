@@ -7,7 +7,7 @@ gem 'unicorn'
 gem 'bootstrap', '~> 4.1.3'
 #gem 'jquery-rails'
 gem 'jquery-rails'
-
+gem 'rails-i18n'
 
 #gem 'bootstrap-sass', '~> 4.1.1'
 
