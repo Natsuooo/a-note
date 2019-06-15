@@ -1,5 +1,50 @@
 <% provide(:title, 'メモ一覧') %>
-<h1>
-  <%= @user.id %> 
-  <%= @user.email %> 
-</h1>
+
+<%= render 'users/sidebar' %>
+
+<%= render 'shared/flash_messages' %>
+
+<!-- 576px以下の時のデザイン -->
+<div class="d-sm-none">
+ 
+  <!-- ナビバー -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-brand">A-note</span>
+
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <div class="navbar-nav">
+        <a href="#" class="nav-item nav-link ml-1 mt-1">
+          <i class="fas fa-sync mr-1"></i>
+          同期
+        </a>
+        <a href="#" class="nav-item nav-link ml-1">
+          <i class="fas fa-trash mr-1"></i>
+          ゴミ箱
+        </a>
+        <a href="/logout" class="nav-item nav-link ml-1" data-method="delete">
+          <i class="fas fa-sign-out-alt mr-1"></i>
+          ログアウト
+        </a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- 新規作成ボタン -->
+  <button type="button" class="btn btn-link shadow btn-lg" id="createButton">
+    <%= link_to image_tag("plus.svg", alt: "create"), "#", id: "createButtonImage" %>
+  </button>
+  
+</div>
+
+
+<!-- 576px以上の時のデザイン -->
+<div class="container-fluid d-none d-sm-block">
+  <div class="row">
+    <div class="col-sm-12">
+      more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.
+    </div>
+  </div>
+</div>

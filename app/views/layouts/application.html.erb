@@ -8,13 +8,19 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      <% end %>
+    <% if logged_in? %>
+    <!-- ログインしていたときの画面 --> 
+     
       <%= yield %>
-    </div>
-    <%= debug(params) if Rails.env.development? %>
+      
+    <% else %>
+    <!-- ログインしていないときの画面 --> 
+     
+      <%= render 'layouts/header' %>
+      <div class="container">
+        <%= yield %>
+      </div>
+      
+    <% end %>
   </body>
 </html>
