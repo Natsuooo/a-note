@@ -2,7 +2,7 @@
 
 <%= render 'shared/flash_messages' %>
 
-<h2 class="text-center mt-3 mb-3">ログイン</h2>
+<h3 class="text-center mb-4">ログイン</h3>
 <div class="row justify-content-center">
   <div class="col-sm-6 ml-4 mr-4">
     <%= form_for(:session, url: login_path) do |f| %>
@@ -18,7 +18,7 @@
     </div>
     
     <div class="custom-control custom-checkbox">
-      <%= f.check_box :remember_me, class: "custom-control-input", checked: "checked" %>
+      <%= f.check_box :remember_me, class: "custom-control-input" %>
       <%= f.label :remember_me, class: "custom-control-label" do %>
       <span>パスワードを保存する</span>
       <% end %>
@@ -29,6 +29,6 @@
     
     <p class="text-center mt-4"><%= link_to "新規登録", signup_path %></p>
     
-    <p class="text-center mt-3"><%= link_to "パスワードを忘れた", "#" %></p>
+    <p class="text-center mt-3"><%= link_to "パスワードを忘れた", new_password_reset_path %></p>
   </div>
 </div>

@@ -1,8 +1,8 @@
 <% provide(:title, '新規登録') %>
 
-<h1 class="text-center">新規登録</h1>
+<h3 class="text-center mb4">新規登録</h3>
 <div class="row justify-content-center">
-  <div class="col-md-6">
+  <div class="col-sm-6 ml-4 mr-4">
     <%= form_for(@user, url: signup_path) do |f| %>
     <%= render 'shared/error_messages' %> 
 
@@ -21,7 +21,7 @@
       <%= f.password_field :password_confirmation, class: "form-control" %>
     </div>
     
-    <%= f.submit "新規登録", class: "btn btn-primary btn-block" %>
+    <%= f.submit "新規登録", class: "btn btn-primary btn-block mt-4" %>
     <% end %>
     
   </div>
