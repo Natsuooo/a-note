@@ -20,4 +20,16 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+  
+  def android_login
+    user=User.find_by(email: params[:user_email].downcase)
+    if user && user.authenticate(params[:user_password])
+      login={login: user.id}
+      render :json => login
+    else
+      login={login: "NG"}
+      render :json => login
+    end
+  end
+  
 end

@@ -67,6 +67,22 @@ class MicropostsController < ApplicationController
     @micropost=Micropost.find(params[:id])
   end
     
+  def android_get_memo
+    micropost=Micropost.where(user_id: params[:user_id], trash: false)
+    memo={
+      datas: micropost.each do |f| 
+        { 
+        id: f.id,
+        title: f.title,
+        body: f.body,
+        created_at: f.created_at.to_s
+        }
+      end
+#      data: "a"
+    }
+    render :json => memo
+  end  
+  
   private
     
     def micropost_params

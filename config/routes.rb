@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   put '/microposts/:id/edit', to: 'microposts#trash'
   get 'trash/:id', to: 'microposts#trash_edit'
   
+  post 'android/login', to: 'sessions#android_login'
+  post 'android/get_memo', to: 'microposts#android_get_memo'
+  
   resources :users
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :microposts
