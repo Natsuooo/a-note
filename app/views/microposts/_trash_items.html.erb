@@ -1,0 +1,7 @@
+<a href="<%= edit_micropost_path(micropost) %>" class="list-group-item list-group-item-action flex-column align-items-start">
+  <div class="d-flex w-100 justify-content-between">
+    <h6 class="mb-2"><%= micropost.title %></h6>
+    <small class="text-muted"><%= micropost.created_at.strftime('%Y/%m/%d') %></small>
+  </div>
+  <p class="mb-1"><%= micropost.body %></p>
+</a>

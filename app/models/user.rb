@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   
+  has_many :microposts, dependent: :destroy
+  
   attr_accessor :remember_token, :reset_token
   
   before_save {email.downcase!}
@@ -53,4 +55,8 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
   
+  def memo
+    Micropost.where(user_id: id, trash: false)
+  end
+    
 end

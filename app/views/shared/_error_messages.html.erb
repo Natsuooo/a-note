@@ -1,7 +1,7 @@
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
   <ul class="alert alert-danger">
-    <% @user.errors.full_messages.each do |msg| %>
-    <li class="ml-3"><%= msg %></li>
+    <% object.errors.full_messages.each do |msg| %>
+      <li class="ml-3"><%= msg %></li>
     <% end %>
   </ul>
 <% end %>

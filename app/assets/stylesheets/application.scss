@@ -1,6 +1,12 @@
 //@import "bootstrap-sprockets";
 @import "bootstrap";
 
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+
 /* ナビバー */
 .navbar-toggler{
   border:none;
@@ -15,6 +21,7 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(9, 55, 244, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
+
 /* FAB */
 #createButton{
   position: fixed;
@@ -25,8 +32,42 @@
   padding: 10px 16px;
   line-height: 1.33;
   border-radius: 30px;
+  background: white;
 }
 
+#save-button{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  padding: 10px 16px;
+  line-height: 1.33;
+  border-radius: 30px;
+  outline: none;
+  background: white;
+}
 
+/* メモ編集フォーム */
+#form-title{
+  outline: 0;
+  border: 0px;
+  background: transparent;
+  font-size: 18px;
+}
 
+#form-body{
+  outline: 0;
+  border: 0px;
+  background: transparent;
+  font-size: 18px;
+  height:  calc(100vh - 195px);
+}
 
+#border-title{
+  margin-top: -12px;
+}
+
+#back-button{
+  width: 30px;
+}

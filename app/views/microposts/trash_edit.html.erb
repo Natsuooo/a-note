@@ -1,0 +1,22 @@
+<% provide(:title, '編集 ゴミ箱') %>
+
+<!-- 576px以下の時のデザイン -->
+<div class="d-sm-none">
+
+  <nav class="navbar shadow-sm">
+
+    <a href="/users/<%= @micropost.user_id %>/trash">
+      <%= image_tag "left-arrow.svg", id: "back-button", class: "ml-2" %>
+    </a>
+    
+    <span class="navbar-brand float-left mr-auto ml-4">Note in ゴミ箱</span>
+
+    <%= link_to micropost_path(@micropost), method: :delete, data: {confirm: "メモを完全に削除します。よろしいですか？"}, target: "_blank" do %>
+    <%= image_tag "garbage.svg", id: "back-button", class: "mr-2" %>
+    <% end %>
+
+  </nav>
+
+  <%= render 'microposts/form' %>
+
+</div>

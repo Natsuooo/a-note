@@ -1,0 +1,18 @@
+<% provide(:title, '新規作成') %>
+
+<!-- 576px以下の時のデザイン -->
+<div class="d-sm-none">
+ 
+  <nav class="navbar shadow-sm">
+
+    <%= link_to user_path(@micropost.user_id), target: "_blank", data: {confirm: "メモを保存せずに移動します。よろしいですか？"} do %>
+    <%= image_tag "left-arrow.svg", id: "back-button", class: "ml-2" %>
+    <% end %>
+    
+    <span class="navbar-brand float-left mr-auto ml-4">Note</span>
+    
+  </nav>
+  
+  <%= render 'microposts/form' %>
+  
+</div>

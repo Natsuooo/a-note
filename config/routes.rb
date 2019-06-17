@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
+  get '/users/:id/trash', to: 'microposts#trash_index'
+  put '/microposts/:id/edit', to: 'microposts#trash'
+  get 'trash/:id', to: 'microposts#trash_edit'
+  
   resources :users
   resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :microposts
   
 end

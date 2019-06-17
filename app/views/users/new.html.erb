@@ -3,8 +3,8 @@
 <h3 class="text-center mb4">新規登録</h3>
 <div class="row justify-content-center">
   <div class="col-sm-6 ml-4 mr-4">
-    <%= form_for(@user, url: signup_path) do |f| %>
-    <%= render 'shared/error_messages' %> 
+    <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
     <div class="form-group">
       <%= f.label :email, "メールアドレス" %>
