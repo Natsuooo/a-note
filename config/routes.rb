@@ -15,9 +15,14 @@ Rails.application.routes.draw do
   
   post 'android/login', to: 'sessions#android_login'
   post 'android/get_memo', to: 'microposts#android_get_memo'
+  post 'android/register', to: 'users#android_register'
+  
+  post 'microposts/ajax-update', to: 'microposts#update'
   
   resources :users
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :microposts
+  
+  
   
 end

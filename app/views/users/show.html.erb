@@ -26,9 +26,66 @@
 
 <!-- 576px以上の時のデザイン -->
 <div class="container-fluid d-none d-sm-block">
+ 
   <div class="row">
-    <div class="col-sm-12">
-      more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.more than 576px.
+   
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column text-center">
+        <li class="nav-item">
+          <a href="#" class="nav-link text-dark">
+            トップ
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-dark">
+            新規作成
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-dark">
+            同期
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-dark">
+            ゴミ箱
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-dark">
+            ログアウト
+          </a>
+        </li>
+      </ul>
     </div>
+    
+    <div class="col">
+     
+      <% if @memo_items.any? %>
+      <div class="list-group list-group-flush ajax-show">
+        <%= render @memo_items %>
+      </div>
+      <% end %>
+    </div>
+    
+    <div class="col">
+    
+      <%= form_with model: @micropost, class: "ajax-show" do |f| %>
+      <div class="form-group mt-2 ml-3 mr-3">
+        <%= f.text_field :title, placeholder: "タイトル", id: "form-title", class: "w-100" %>
+      </div>
+
+      <div class="border-bottom border-dark ml-3 mr-3" id="border-title"></div>
+
+      <div class="form-group ml-3 mr-3 mt-2">
+        <%= f.text_area :body, placeholder: "本文", id: "form-body", class: "w-100" %>
+      </div>
+      
+      <%= image_submit_tag("tick.svg", id: "save-button", class: "shadow") %>
+
+      <% end %>
+      
+    </div>
+    
   </div>
 </div>

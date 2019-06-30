@@ -1,3 +1,5 @@
+<!--　ゴミ箱一覧画面　-->
+
 <% provide(:title, 'ゴミ箱') %>
 
 <%= render 'users/sidebar' %>
@@ -11,7 +13,7 @@
 
   <nav class="navbar shadow-sm">
 
-    <%= link_to user_path(@user), target: "_blank" do %>
+    <%= link_to user_path(@user) do %>
     <%= image_tag "left-arrow.svg", id: "back-button", class: "ml-2" %>
     <% end %>
 

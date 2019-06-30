@@ -15,7 +15,8 @@ class MicropostsController < ApplicationController
       if @micropost.title==""
         @micropost.update(title: "無題のノート")
       end
-      redirect_to @user
+      render :json => @micropost.title
+#      redirect_to @user
     else
       @memo_items=[]
       render 'new'
@@ -27,6 +28,18 @@ class MicropostsController < ApplicationController
   end
   
   def update
+#    @micropost=Micropost.find(params[:id])
+#    if @micropost.update("title": params[:title], "body": params[:body])
+#      if @micropost.title==""
+#        @micropost.update(title: "無題のノート")
+#      end
+#      redirect_to current_user
+#    else
+#      @memo_items=[]
+#      render 'edit'
+#    end
+    
+    
     Micropost.find(params[:id]).destroy
     @user=current_user
     @micropost=@user.microposts.build(micropost_params)

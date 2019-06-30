@@ -1,3 +1,5 @@
+<!-- メモの編集画面 -->
+
 <% provide(:title, '編集') %>
 
 <!-- 576px以下の時のデザイン -->
@@ -5,15 +7,28 @@
  
   <nav class="navbar shadow-sm">
 
-    <%= link_to user_path(@micropost.user_id), target: "_blank", data: {confirm: "メモを保存せずに移動します。よろしいですか？"} do %>
+    <%= link_to user_path(@micropost.user_id), data: {confirm: "メモを保存せずに移動します。よろしいですか？"} do %>
     <%= image_tag "left-arrow.svg", id: "back-button", class: "ml-2" %>
     <% end %>
 
     <span class="navbar-brand float-left mr-auto ml-4">Note</span>
 
-    <%= link_to edit_micropost_path(@micropost), method: :put, data: {confirm: "メモをゴミ箱に移動します。よろしいですか？"}, target: "_blank" do %>
-    <%= image_tag "garbage.svg", id: "back-button", class: "mr-2" %>
-    <% end %>
+    <%= image_tag "garbage.svg", id: "back-button", class: "mr-2", data: {toggle: "modal", target: "#exampleModalCenter"} %>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            メモをゴミ箱に移動しますか？
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+            <%= link_to "ゴミ箱に移動する", edit_micropost_path(@micropost), class: "btn btn-primary", method: "put" %>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </nav>
   

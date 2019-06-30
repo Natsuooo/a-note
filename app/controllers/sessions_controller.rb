@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   
   def android_login
     user=User.find_by(email: params[:user_email].downcase)
-    if user && user.authenticate(params[:user_password])
+    if user && user.authenticate(params[:user_password]) && params[:pass]==sE33crxWxdNL
       login={login: user.id}
       render :json => login
     else
