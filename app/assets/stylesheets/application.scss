@@ -71,3 +71,8 @@ html, body{
 #back-button{
   width: 30px;
 }
+
+//強制的に改行させる
+.word-break{
+  word-break: break-all;
+}

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post 'android/get_memo', to: 'microposts#android_get_memo'
   post 'android/register', to: 'users#android_register'
   
-  post 'microposts/ajax-update', to: 'microposts#update'
+  get 'microposts/:id/ajax_form', to: 'microposts#ajax_form', as: 'ajax_form'
   
   resources :users
   resources :password_resets, only: [:new, :create, :edit, :update]

@@ -6,10 +6,25 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap
+//
+//$(function(){
+//  $(document).on('ajax:success', 'form', function(e){
+//    var data=e.detail[0];
+//    $('.ajax-show').prepend(
+//      '<p>'+data['title']+'</p>'+
+//      '<p>'+data['body']+'</p>'
+//    );
+//    $('.ajax-show').html("<%= escape_javascript(render partial:'micropost')%>");
+//    var response=e.detail[0].response;
+//    $('.ajax-show').html(response);
+//  });
+//  
+  
+//});
 
-$(function(){
-  $(document).on('ajax:success', 'form', function(e){
-    var data=e.detail[0];
-    $('.ajax-content').prepend('<p>'+e.detail[0]+'</p>');
-  });
-});
+//$(function(){
+//  $('form').keyup(function(){
+//    Rails.fire($('form')[0], 'submit');
+//  });
+//});
+

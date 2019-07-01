@@ -15,7 +15,9 @@ class MicropostsController < ApplicationController
       if @micropost.title==""
         @micropost.update(title: "無題のノート")
       end
-      render :json => @micropost.title
+#      render :json => @micropost
+#      results={message: @micropost.title}
+#      render partial: "ajax_partial", locals: {results: results}
 #      redirect_to @user
     else
       @memo_items=[]
@@ -39,19 +41,30 @@ class MicropostsController < ApplicationController
 #      render 'edit'
 #    end
     
-    
-    Micropost.find(params[:id]).destroy
-    @user=current_user
-    @micropost=@user.microposts.build(micropost_params)
-    if @micropost.save
-      if @micropost.title==""
-        @micropost.update(title: "無題のノート")
-      end
-      redirect_to @user
+    @micropost=Micropost.find(params[:id])
+    if @micropost.update_attributes(micropost_params)
+      @memo_items=current_user.memo
     else
       @memo_items=[]
       render 'edit'
     end
+    
+    
+#    Micropost.find(params[:id]).destroy
+#    @user=current_user
+#    @micropost=@user.microposts.build(micropost_params)
+#    if @micropost.update
+#      if @micropost.title==""
+#        @micropost.update(title: "無題のノート")
+#      end
+#      @memo_items=current_user.memo
+#      redirect_to @user
+#      results={:message => @micropost.title}
+#      render partial: 'ajax_partial', locals: {:resuts => results}
+#    else
+#      @memo_items=[]
+#      render 'edit'
+#    end
   end
   
   def trash
@@ -95,6 +108,10 @@ class MicropostsController < ApplicationController
     }
     render :json => memo
   end  
+  
+  def ajax_form
+    @micropost=Micropost.find(params[:id]);
+  end
   
   private
     

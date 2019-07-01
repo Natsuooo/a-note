@@ -60,17 +60,22 @@
     </div>
     
     <div class="col">
-     
-      <% if @memo_items.any? %>
-      <div class="list-group list-group-flush ajax-show">
-        <%= render @memo_items %>
-      </div>
+      <div class="list-group list-group-flush ajax-show ajax-update word-break">
+      <% @memo_items.each do |item| %>
+        <a href="<%= ajax_form_path(item) %>" class="list-group-item list-group-item-action flex-column align-items-start" data-remote="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h6 class="mb-2"><%= item.title %></h6>
+            <small class="text-muted"><%= item.created_at.strftime('%Y/%m/%d') %></small>
+          </div>
+          <p class="mb-1"><%= truncate(item.body, length: 100) %></p>
+        </a>
       <% end %>
+      </div>
     </div>
     
-    <div class="col">
+    <div class="col ajax-form">
     
-      <%= form_with model: @micropost, class: "ajax-show" do |f| %>
+      <%= form_with model: @micropost do |f| %>
       <div class="form-group mt-2 ml-3 mr-3">
         <%= f.text_field :title, placeholder: "タイトル", id: "form-title", class: "w-100" %>
       </div>
