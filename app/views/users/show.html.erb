@@ -60,16 +60,11 @@
     </div>
     
     <div class="col">
-      <div class="list-group list-group-flush ajax-show ajax-update word-break">
-      <% @memo_items.each do |item| %>
-        <a href="<%= ajax_form_path(item) %>" class="list-group-item list-group-item-action flex-column align-items-start" data-remote="true">
-          <div class="d-flex w-100 justify-content-between">
-            <h6 class="mb-2"><%= item.title %></h6>
-            <small class="text-muted"><%= item.created_at.strftime('%Y/%m/%d') %></small>
-          </div>
-          <p class="mb-1"><%= truncate(item.body, length: 100) %></p>
-        </a>
-      <% end %>
+     
+      <p class="mt-4 mb-4 ml-3" style="font-size: 26px;">Note</p> 
+                   
+      <div class="index list-group list-group-flush ajax-show ajax-update word-break">
+        <%= render ('microposts/memo_items') %>
       </div>
     </div>
     
