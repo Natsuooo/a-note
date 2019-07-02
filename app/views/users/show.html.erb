@@ -59,11 +59,11 @@
       </ul>
     </div>
     
-    <div class="col">
+    <div class="col border-right border-left">
      
-      <p class="mt-4 mb-4 ml-3" style="font-size: 26px;">Note</p> 
+      <p class="mt-4 mb-4 ml-3 text-primary" style="font-size: 26px;">Note</p> 
                    
-      <div class="index list-group list-group-flush ajax-show ajax-update word-break">
+      <div class="index list-group list-group-flush ajax-show ajax-update word-break border-top">
         <%= render ('microposts/memo_items') %>
       </div>
     </div>
@@ -71,7 +71,7 @@
     <div class="col ajax-form">
     
       <%= form_with model: @micropost do |f| %>
-      <div class="form-group mt-2 ml-3 mr-3">
+      <div class="form-group mt-3 ml-3 mr-3">
         <%= f.text_field :title, placeholder: "タイトル", id: "form-title", class: "w-100" %>
       </div>
 

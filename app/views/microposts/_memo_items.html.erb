@@ -1,10 +1,44 @@
 <% @memo_items.each do |item| %>
-<a href="<%= ajax_form_path(item) %>" class="list-group-item list-group-item-action flex-column align-items-start" data-remote="true">
+<div class="list-group-item list-group-item-action flex-column align-items-start memo-item-div">
 
   <div class="row mb-2">
-    <div class="col index-title"><%= item.title %></div>
-    <div class="text-right index-date"><small class="text-muted"><%= item.created_at.strftime('%Y/%m/%d') %></small></div>
+  
+    <!-- メモをクリックしたときのリンク -->
+    <a href="<%= ajax_form_path(item) %>" data-remote="true"></a>
+   
+    <div class="col index-title">
+      <%= truncate(item.title, length: 30) %>
+    </div>
+    
+    <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#exampleModalCenter">
+      <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'">
+    </span>
+    
+    <div class="text-right index-date">
+      <small class="text-muted">
+        <%= item.created_at.strftime('%Y/%m/%d') %>
+      </small>
+    </div>
   </div>
-  <p class="mb-1 text-muted index-body"><%= truncate(item.body, length: 100) %></p>
-</a>
+  
+  <p class="mb-1 text-muted index-body">
+    <%= truncate(item.body, length: 100) %>
+  </p>
+  
+</div>  
 <% end %>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        メモをゴミ箱に移動しますか？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
