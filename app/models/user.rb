@@ -60,5 +60,9 @@ class User < ApplicationRecord
   def memo
     Micropost.where(user_id: id, trash: false)
   end
+  
+  def form
+    Micropost.where(user_id: id, trash: false).first
+  end
     
 end

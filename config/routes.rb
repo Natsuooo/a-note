@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
-  get '/users/:id/trash', to: 'microposts#trash_index'
-  put '/microposts/:id/edit', to: 'microposts#trash'
+  get '/users/:id/trash', to: 'microposts#trash_index', as: 'trash_micropost'
+  patch '/microposts/:id/trash', to: 'microposts#trash'
   get 'trash/:id', to: 'microposts#trash_edit'
   
   post 'android/login', to: 'sessions#android_login'
@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   post 'android/register', to: 'users#android_register'
   
   get 'microposts/:id/ajax_form', to: 'microposts#ajax_form', as: 'ajax_form'
+  
+#  get 'microposts/sync', to: 'microposts#sync', as: 'sync_microposts'
+  
+  get 'microposts/back_to_index', to: 'microposts#back_to_index', as: 'back_to_index'
   
   resources :users
   resources :password_resets, only: [:new, :create, :edit, :update]

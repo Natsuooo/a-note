@@ -6,31 +6,29 @@
     <!-- メモをクリックしたときのリンク -->
     <a href="<%= ajax_form_path(item) %>" data-remote="true"></a>
    
-    <div class="col index-title">
+    <div class="col index-title ml-1">
       <%= truncate(item.title, length: 30) %>
     </div>
     
-    <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#exampleModalCenter">
-      <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'">
+    <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#exampleModalCenter<%= item.id %>">
+      <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" title="ゴミ箱に移動する">
     </span>
     
     <div class="text-right index-date">
       <small class="text-muted">
-        <%= item.created_at.strftime('%Y/%m/%d') %>
+        <%= item.updated_at.strftime('%Y/%m/%d') %>
       </small>
     </div>
   </div>
   
-  <p class="mb-1 text-muted index-body">
+  <p class="mb-1 ml-1 text-muted index-body">
     <%= truncate(item.body, length: 100) %>
   </p>
   
 </div>  
-<% end %>
-
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -38,7 +36,19 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+        <%= link_to "ゴミ箱に移動する", trash_micropost_path(item), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal" %>
       </div>
     </div>
   </div>
 </div>
+
+<% end %>
+
+
+<script>
+  $(function () {
+    /* bootstrapのtooltipを有効にする */
+    $('[data-toggle="tooltip"]').tooltip();
+
+  });
+</script>

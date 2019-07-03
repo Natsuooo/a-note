@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @memo_items=current_user.memo
-    @micropost=current_user.microposts.build 
+#    @micropost=current_user.microposts.build 
+    @micropost=current_user.form
   end
   
     

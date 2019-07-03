@@ -6,6 +6,9 @@ class MicropostsController < ApplicationController
   
   def new
     @micropost=current_user.microposts.build 
+    @micropost.title="無題のノート"
+    @micropost.save
+    @memo_items=current_user.memo
   end
   
   def create
@@ -15,6 +18,7 @@ class MicropostsController < ApplicationController
       if @micropost.title==""
         @micropost.update(title: "無題のノート")
       end
+      @memo_items=current_user.memo
 #      render :json => @micropost
 #      results={message: @micropost.title}
 #      render partial: "ajax_partial", locals: {results: results}
@@ -69,9 +73,13 @@ class MicropostsController < ApplicationController
   
   def trash
     @user=current_user
-    @micropost=Micropost.find(params[:id])
-    if @micropost.update(trash: true)
-      redirect_to @user
+    @to_trash=Micropost.find(params[:id])
+#    if @micropost.update(trash: true)
+    if @to_trash.update(trash: true)
+#      render ('trash')
+#      redirect_to @user
+      @memo_items=current_user.memo
+      @micropost=current_user.form
     else
       render 'edit'
     end
@@ -80,13 +88,15 @@ class MicropostsController < ApplicationController
   def destroy
     Micropost.find(params[:id]).destroy
     @user=current_user
-    @trash_items=Micropost.where(user_id: @user.id, trash: true)
-    redirect_to action: "trash_index"
+    @memo_items=Micropost.where(user_id: @user.id, trash: true)
+    @trash=Micropost.where(user_id: @user.id, trash: true).first
+#    redirect_to action: "trash_index"
   end
   
   def trash_index
     @user=current_user
-    @trash_items=Micropost.where(user_id: @user.id, trash: true)
+    @memo_items=Micropost.where(user_id: @user.id, trash: true)
+    @trash=Micropost.where(user_id: @user.id, trash: true).first
   end
   
   def trash_edit
@@ -111,6 +121,16 @@ class MicropostsController < ApplicationController
   
   def ajax_form
     @micropost=Micropost.find(params[:id]);
+  end
+  
+#  def sync
+#    @memo_items=current_user.memo
+#    @micropost=current_user.form
+#  end
+  
+  def back_to_index
+    @memo_items=current_user.memo
+    @micropost=current_user.form
   end
   
   private

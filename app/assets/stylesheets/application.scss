@@ -6,6 +6,10 @@ html, body{
   padding: 0;
 }
 
+body{
+  overflow-y: hidden;
+}
+
 
 /* ナビバー */
 .navbar-toggler{
@@ -19,6 +23,26 @@ html, body{
 
 .navbar-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(9, 55, 244, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.create-icon{
+  background-color: white;
+  border: solid 1px #007bff;
+}
+
+.create-icon:hover{
+  background-color: #007bff;
+  border: none;
+}
+
+.nav-icon{
+  background-color: white;
+  border: solid 1px #cfcfcf;
+}
+
+.nav-icon:hover{
+  background-color: #007bff;
+  border: none;
 }
 
 
@@ -49,11 +73,24 @@ html, body{
 }
 
 /* メモ編集フォーム */
-#form-title{
+.form-title{
   outline: 0;
   border: 0px;
   background: transparent;
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.form-title::-webkit-input-placeholder {
+  color: #428bca;
+}
+
+.form-title::-moz-placeholder {
+  color: #428bca;
+}
+
+.form-title:-ms-input-placeholder {
+  color: #428bca;
 }
 
 #form-body{
@@ -61,7 +98,7 @@ html, body{
   border: 0px;
   background: transparent;
   font-size: 18px;
-  height:  calc(100vh - 195px);
+  height:  calc(100vh - 75px);
 }
 
 #border-title{

@@ -1,0 +1,21 @@
+<%= form_with model: @trash do |f| %>
+<div class="form-group mt-3 ml-3 mr-3">
+  <%= f.text_field :title, placeholder: "無題のノート", class: "w-100 text-primary form-title", readonly: true %>
+</div>
+
+<div class="border-bottom border-muted ml-3 mr-3" id="border-title"></div>
+
+<small class="text-muted float-right mt-2 mr-3 mb-4"><%= @trash.updated_at.strftime('%Y/%m/%d') %></small>
+
+<div class="form-group ml-3 mr-3 mt-2">
+  <%= f.text_area :body, placeholder: "本文", id: "form-body", class: "w-100", readonly: true %>
+</div>
+
+<% end %>
+
+
+<script>
+  $('form').change(function(){
+    Rails.fire($('form')[0], 'submit');
+  });
+</script>

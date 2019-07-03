@@ -28,3 +28,9 @@
 //  });
 //});
 
+$(function () {
+  /* bootstrapのtooltipを有効にする */
+  $('[data-toggle="tooltip"]').tooltip();
+  
+});
+
