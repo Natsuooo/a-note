@@ -1,24 +1,32 @@
 <!-- ナビバー -->
-<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <span class="navbar-brand mr-auto ml-2">A-note</span>
 
-  <div class="collapse navbar-collapse" id="navbarToggler">
-    <div class="navbar-nav">
-      <a href="#" class="nav-item nav-link ml-1 mt-1">
-        <i class="fas fa-sync mr-1"></i>
-        同期
-      </a>
-      <a href="/users/<%= @user.id %>/trash" class="nav-item nav-link ml-1">
-        <i class="fas fa-trash mr-1"></i>
-        ゴミ箱
-      </a>
-      <a href="/logout" class="nav-item nav-link ml-1" data-method="delete">
-        <i class="fas fa-sign-out-alt mr-1"></i>
-        ログアウト
-      </a>
-    </div>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<span class="navbar-brand mr-auto ml-2" style="font-family: 'Comfortaa', cursive;">A-note</span>
+
+<div class="collapse navbar-collapse" id="navbarToggler">
+  <div class="navbar-nav">
+<!--
+    <a href="<%#= mobile_back_to_index_path %>" class="nav-item nav-link ml-1 mt-1" data-remote="true">
+      <i class="fas fa-file-alt mr-2"></i>
+      メモ一覧
+    </a>
+-->
+    <a href="<%= mobile_trash_index_micropost_path(@user) %>" class="nav-item nav-link ml-1 mt-1" data-remote="true">
+      <i class="fas fa-trash mr-2"></i>
+      ゴミ箱
+    </a>
+    <a href="<%= logout_path %>" class="nav-item nav-link ml-1" data-method="delete">
+      <i class="fas fa-sign-out-alt mr-1"></i>
+      ログアウト
+    </a>
   </div>
-</nav>
+</div>
+
+
+<script>
+  $(function(){
+    $(".tooltip").remove();
+  });
+</script>

@@ -6,7 +6,8 @@ html, body{
   padding: 0;
 }
 
-body{
+.scroll-bar{
+  overflow-x: hidden;
   overflow-y: hidden;
 }
 
@@ -16,10 +17,10 @@ body{
   border:none;
 }
 
-.navbar{
-  margin-left:-10px;
-  margin-right:-10px;
-}
+//.navbar{
+//  margin-left:-10px;
+//  margin-right:-10px;
+//}
 
 .navbar-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(9, 55, 244, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
@@ -81,17 +82,17 @@ body{
   font-weight: 500;
 }
 
-.form-title::-webkit-input-placeholder {
-  color: #428bca;
-}
-
-.form-title::-moz-placeholder {
-  color: #428bca;
-}
-
-.form-title:-ms-input-placeholder {
-  color: #428bca;
-}
+//.form-title::-webkit-input-placeholder {
+//  color: #428bca;
+//}
+//
+//.form-title::-moz-placeholder {
+//  color: #428bca;
+//}
+//
+//.form-title:-ms-input-placeholder {
+//  color: #428bca;
+//}
 
 #form-body{
   outline: 0;
@@ -113,7 +114,7 @@ body{
 .index{
   overflow: auto; 
   height: 100vh;
-  margin-right: -16px; 
+  margin-right: -15px; 
   margin-left: -15px;
 }
 

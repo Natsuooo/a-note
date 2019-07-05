@@ -6,7 +6,7 @@ class MicropostsController < ApplicationController
   
   def new
     @micropost=current_user.microposts.build 
-    @micropost.title="無題のノート"
+#    @micropost.title="無題のノート"
     @micropost.save
     @memo_items=current_user.memo
   end
@@ -46,7 +46,17 @@ class MicropostsController < ApplicationController
 #    end
     
     @micropost=Micropost.find(params[:id])
+    
+    
+    
+    if params[:title]==""
+      params[:title]="無題のノート"
+    end
+    
     if @micropost.update_attributes(micropost_params)
+#      if @micropost.title==""
+#        @micropost.update(title: "無題のノート")
+#      end
       @memo_items=current_user.memo
     else
       @memo_items=[]
@@ -73,9 +83,9 @@ class MicropostsController < ApplicationController
   
   def trash
     @user=current_user
-    @to_trash=Micropost.find(params[:id])
+    @micropost=Micropost.find(params[:id])
 #    if @micropost.update(trash: true)
-    if @to_trash.update(trash: true)
+    if @micropost.update(trash: true)
 #      render ('trash')
 #      redirect_to @user
       @memo_items=current_user.memo
@@ -103,6 +113,7 @@ class MicropostsController < ApplicationController
     @micropost=Micropost.find(params[:id])
   end
     
+  
   def android_get_memo
     micropost=Micropost.where(user_id: params[:user_id], trash: false)
     memo={
@@ -131,6 +142,71 @@ class MicropostsController < ApplicationController
   def back_to_index
     @memo_items=current_user.memo
     @micropost=current_user.form
+    @user=current_user
+  end
+  
+  def restore
+   
+    @micropost=Micropost.find(params[:id])
+    if @micropost.update(trash: false)
+      @user=current_user
+      @memo_items=Micropost.where(user_id: @user.id, trash: true)
+      @trash=Micropost.where(user_id: @user.id, trash: true).first
+    end
+  end
+  
+  def mobile_new
+    @micropost=current_user.microposts.build 
+    @micropost.save
+  end
+  
+  def mobile_update
+    @micropost=Micropost.find(params[:id])
+    
+    if params[:micropost][:title]==""
+      params[:micropost][:title]="無題のノート"
+    end
+    @micropost.update_attributes(micropost_params)
+    
+#    if @micropost.update_attributes(micropost_params)
+#      if @micropost.title==""
+#        @micropost.update(title: "無題のノート")
+#      end
+#    else
+#      redirect to current_user
+#    end
+  end
+  
+  def mobile_edit
+    @micropost=Micropost.find(params[:id])
+  end
+  
+  def mobile_trash_index
+    @memo_items=Micropost.where(user_id: params[:id], trash: true)
+  end
+  
+  def mobile_trash_view
+    @trash=Micropost.find(params[:id])
+    @user=current_user
+  end
+  
+  def mobile_back_to_index
+    @memo_items=current_user.memo
+    @user=current_user
+  end
+  
+  def mobile_restore
+    @micropost=Micropost.find(params[:id])
+    if @micropost.update(trash: false)
+      @user=current_user
+      @memo_items=Micropost.where(user_id: @user.id, trash: true)
+    end
+  end
+  
+  def mobile_delete
+    Micropost.find(params[:id]).destroy
+    @user=current_user
+    @memo_items=Micropost.where(user_id: @user.id, trash: true)
   end
   
   private

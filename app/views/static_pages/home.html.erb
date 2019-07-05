@@ -1,12 +1,32 @@
- <div class="center jumbotron text-center">
+<div class="container-fluid bg-primary">
+  <div class="row align-items-center">
+    <div class="col-6 pt-5 pb-5">
+      <h1 class="text-white">使いやすいのに、無料。シンプルで最高のメモ帳アプリ。</h1>
+      <p class="text-white mt-4" style="font-size: 25px;">
+        A-noteなら、いつでも、どこでも簡単にメモ帳を作成できます。余計な機能を省き、シンプルで最高の使いやすさを実現。もちろん、広告もありません。何と言っても、無料です。
+      </p>
+      <%= link_to "無料で新規登録", signup_path, class: "btn btn btn-light text-primary pt-3 pb-3 pl-5 pr-5 mt-4" %>
+    </div>
+    <div class="col-6 text-center">
+      <%= image_tag 'computer.svg', class: 'w-50 mb-4' %>
+      <%= image_tag 'smartphone.svg', class: 'w-25 mt-5' %>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="center jumbotron text-center">
   <h1>A-note</h1>
+
+
 
   <h2>
     サインアップ以前の人に表示する紹介画面
   </h2>
 
-  <%= link_to "新規登録", signup_path, class: "btn btn-lg btn-primary" %>
   
+
 </div>
 
 <%= render 'layouts/footer' %>

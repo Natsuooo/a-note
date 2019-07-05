@@ -1,0 +1,16 @@
+<!-- ナビバー -->
+
+<span class="navbar-brand mr-auto ml-2" style="font-family: 'Comfortaa', cursive;">
+  <a href="<%= mobile_trash_index_micropost_path(@user) %>" data-remote="true"><img src="/app/assets/images/left-arrow-mono.svg" alt="sync" style="width: 20px;" onmouseover="this.src='/app/assets/images/left-arrow.svg'" onmouseout="this.src='/app/assets/images/left-arrow-mono.svg'" class="mb-1 mr-1" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="メモ一覧に戻る"></a>
+  ゴミ箱のメモ
+</span>
+
+
+<script>
+  $(function () {
+    /* bootstrapのtooltipを有効にする */
+    $('[data-toggle="tooltip"]').tooltip(); 
+    $('.tooltip').remove();
+  });
+
+</script>

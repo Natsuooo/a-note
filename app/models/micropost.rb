@@ -12,4 +12,12 @@ class Micropost < ApplicationRecord
     Micropost.where(user_id: id, trash: false).first
   end
   
+  def trash
+    Micropost.where(user_id: id, trash: true)
+  end
+  
+  def trash_view
+    Micropost.where(user_id: id, trash: true).first
+  end
+  
 end

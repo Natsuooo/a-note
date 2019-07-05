@@ -4,16 +4,16 @@
   <div class="row mb-2">
 
     <!-- メモをクリックしたときのリンク -->
-    <a href="<%= ajax_form_path(item) %>" data-remote="true"></a>
+    <a href="<%= mobile_trash_view_micropost_path(item) %>" data-remote="true"></a>
 
-    <div class="col index-title ml-1">
+    <div class="col index-title">
       <%= truncate(item.title, length: 30) %>
     </div>
-    
+
     <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#exampleModalCenter<%= item.id %>">
-     
-      <a href="<%= restore_micropost_path(item) %>" style="z-index: 3; position: relative" data-remote="true"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1 restore-tooltip" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
-     
+
+      <a href="<%= mobile_restore_path(item) %>" style="z-index: 3; position: relative" data-remote="true"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1 restore-tooltip" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
+
       <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="削除する">
     </span>
 
@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <p class="mb-1 ml-1 text-muted index-body">
+  <p class="mb-1 text-muted index-body">
     <%= truncate(item.body, length: 100) %>
   </p>
 
@@ -39,7 +39,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "削除する", micropost_path(item), class: "btn btn-primary trash_button", method: "delete", remote: true, "data-dismiss": "modal" %>
+        <%= link_to "削除する", mobile_delete_path(item), class: "btn btn-primary trash_button", method: "get", remote: true, "data-dismiss": "modal" %>
       </div>
     </div>
   </div>
@@ -47,11 +47,16 @@
 
 <% end %>
 
+<!-- 新規作成ボタン -->
+<button type="button" class="btn btn-link shadow btn-lg bg-primary" id="createButton" style="z-index:2;">
+  <%= link_to image_tag("create-hover.svg", alt: "create", style: "width: 25px; position: fixed; right: 35.5px; bottom: 35.5px;"), mobile_new_micropost_path, remote: 'true' %>
+</button>
+
 
 <script>
   $(function () {
     /* bootstrapのtooltipを有効にする */
     $('[data-toggle="tooltip"]').tooltip(); 
   });
-  
+
 </script>

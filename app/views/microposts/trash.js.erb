@@ -1,3 +1,5 @@
 $('.ajax-form').html("<%= j(render 'microposts/ajax_form') %>");
 $('.ajax-index').html("<%= j(render 'microposts/memo_items') %>");
-$('.ajax-form').html("<%= j(render 'microposts/ajax_form') %>");
+$('[data-toggle="tooltip"]').tooltip().on("show.bs.tooltip", function() {
+  $(".tooltip").remove();
+});

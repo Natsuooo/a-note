@@ -2,33 +2,33 @@
 <div class="list-group-item list-group-item-action flex-column align-items-start memo-item-div">
 
   <div class="row mb-2">
-  
+
     <!-- メモをクリックしたときのリンク -->
-    <a href="<%= ajax_form_path(item) %>" data-remote="true"></a>
-   
+    <a href="<%= mobile_edit_micropost_path(item) %>" data-remote="true"></a>
+
     <div class="col index-title">
       <%= truncate(item.title, length: 30) %>
     </div>
-    
-    <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#index-modal-<%= item.id %>">
+
+    <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#mobile-index-modal-<%= item.id %>">
       <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" title="ゴミ箱に移動する">
     </span>
-    
+
     <div class="text-right index-date">
       <small class="text-muted">
         <%= item.updated_at.strftime('%Y/%m/%d') %>
       </small>
     </div>
   </div>
-  
+
   <p class="mb-1 text-muted index-body">
     <%= truncate(item.body, length: 100) %>
   </p>
-  
+
 </div>  
 
 <!-- Modal -->
-<div class="modal fade" id="index-modal-<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="mobile-index-modal-<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -44,12 +44,17 @@
 
 <% end %>
 
+<!-- 新規作成ボタン -->
+<button type="button" class="btn btn-link shadow btn-lg bg-primary" id="createButton" style="z-index:2;">
+  <%= link_to image_tag("create-hover.svg", alt: "create", style: "width: 25px; position: fixed; right: 35.5px; bottom: 35.5px;"), mobile_new_micropost_path, remote: 'true' %>
+</button>
+
 
 <script>
   $(function () {
     /* bootstrapのtooltipを有効にする */
     $('[data-toggle="tooltip"]').tooltip();
 
-//    $('.fade-in').fadeIn(1000);
+    //    $('.fade-in').fadeIn(1000);
   });
 </script>

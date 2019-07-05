@@ -29,6 +29,7 @@
 //});
 
 $(function () {
+//  ('.fade-in').fadeIn(3000);
   /* bootstrapのtooltipを有効にする */
   $('[data-toggle="tooltip"]').tooltip();
   

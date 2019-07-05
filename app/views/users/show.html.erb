@@ -1,4 +1,5 @@
 <% provide(:title, 'メモ一覧') %>
+<span class="scroll-bar">
 
 <%= render 'users/sidebar' %>
 
@@ -7,19 +8,20 @@
 
 
 <!-- 576px以下の時のデザイン -->
-<div class="d-sm-none">
-  <%= render 'layouts/navbar' %>
+<div class="d-sm-none container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="margin-left: -25px; margin-right: -25px; z-index: 3;">
+    <%= render 'layouts/navbar' %>
+  </nav>
   
-  <% if @memo_items.any? %>
-  <div class="list-group list-group-flush">
-      <%= render @memo_items %>
-    </div>
-  <% end %>
+  <%# if @memo_items.any? %>
+<!--  <div class="list-group list-group-flush">-->
+      <%#= render @memo_items %>
+<!--    </div>-->
+  <%#end %>
   
-  <!-- 新規作成ボタン -->
-  <button type="button" class="btn btn-link shadow btn-lg" id="createButton">
-    <%= link_to image_tag("plus.svg", alt: "create"), new_micropost_path, id: "createButtonImage" %>
-  </button>
+  <div class="index list-group list-group-flush ajax-index word-break">
+    <%= render ('microposts/mobile_memo_items') %>
+  </div>
   
 </div>
 
@@ -31,18 +33,18 @@
    
     <%= render('microposts/sidenav') %>
     
-    <div class="col border-right border-left">
+    <div class="col-5 border-right border-left">
      
-      <p class="memo-title mt-4 mb-4 ml-3 text-primary" style="font-size: 26px; font-family: 'Comfortaa', cursive;">
+      <p class="memo-title mt-4 mb-4 ml-3" style="font-size: 26px; font-family: 'Comfortaa', cursive;">
         A-note
       </p> 
                    
-      <div class="index list-group list-group-flush ajax-show ajax-index word-break">
+      <div class="index list-group list-group-flush ajax-index word-break">
         <%= render ('microposts/memo_items') %>
       </div>
     </div>
     
-    <div class="col ajax-form">
+    <div class="col-sm ajax-form">
     
       <%= render ('microposts/ajax_form') %>
       
@@ -51,3 +53,5 @@
   </div>
 </div>
 
+
+</span>

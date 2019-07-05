@@ -1,4 +1,5 @@
-<%= form_with model: @micropost do |f| %>
+<%#= form_with model: @micropost do |f| %>
+<%= form_for @micropost, url: mobile_update_micropost_path(@micropost), method: :patch, remote: true do |f| %>
 
 <div class="form-group mt-3 ml-3 mr-3">
   <%= f.text_field :title, placeholder: "無題のノート", class: "w-100 form-title" %>
@@ -11,7 +12,7 @@
     <small class="text-muted float-right mt-2 mr-3 mb-4"><%= @micropost.updated_at.strftime('%Y/%m/%d') %></small>
   </div>
   <div>
-    <span class="float-right mr-2 mt-1" data-toggle="modal" data-target="#form-modal-<%= @micropost.id %>" style="cursor: pointer; cursor: hand;">
+    <span class="float-right mr-2 mt-1" data-toggle="modal" data-target="#mobile-form-modal-<%= @micropost.id %>" style="cursor: pointer; cursor: hand;">
       <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" title="ゴミ箱に移動する">
     </span>
   </div>
@@ -24,7 +25,7 @@
 <% end %>
 
 <!-- Modal -->
-<div class="modal fade" id="form-modal-<%= @micropost.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="mobile-form-modal-<%= @micropost.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -48,11 +49,4 @@
       Rails.fire($('form')[0], 'submit');
     }
   });
-//  $(function(){
-//    setInterval(function(){
-//      $('form').keydown(function(e){
-//        Rails.fire($('form')[0], 'submit');
-//      });
-//    }, 500);
-//  });
 </script>
