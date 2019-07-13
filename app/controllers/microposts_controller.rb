@@ -7,6 +7,9 @@ class MicropostsController < ApplicationController
   def new
     @micropost=current_user.microposts.build 
 #    @micropost.title="無題のノート"
+#    if params[:title]==""
+#      params[:title]="無題のノート"
+#    end
     @micropost.save
     @memo_items=current_user.memo
   end
@@ -83,9 +86,9 @@ class MicropostsController < ApplicationController
   
   def trash
     @user=current_user
-    @micropost=Micropost.find(params[:id])
+    @trash=Micropost.find(params[:id])
 #    if @micropost.update(trash: true)
-    if @micropost.update(trash: true)
+    if @trash.update(trash: true)
 #      render ('trash')
 #      redirect_to @user
       @memo_items=current_user.memo
@@ -109,26 +112,70 @@ class MicropostsController < ApplicationController
     @trash=Micropost.where(user_id: @user.id, trash: true).first
   end
   
-  def trash_edit
-    @micropost=Micropost.find(params[:id])
-  end
     
   
   def android_get_memo
-    micropost=Micropost.where(user_id: params[:user_id], trash: false)
-    memo={
-      datas: micropost.each do |f| 
-        { 
-        id: f.id,
-        title: f.title,
-        body: f.body,
-        created_at: f.created_at.to_s
-        }
-      end
-#      data: "a"
-    }
-    render :json => memo
+    if params[:pass]=='sE33crxWxdNL' 
+      micropost=Micropost.where(user_id: params[:user_id], trash: params[:is_trash])
+      memo={
+        datas: micropost.each do |f| 
+          { 
+          id: f.id,
+          title: f.title,
+          body: f.body,
+          updated_at: f.updated_at.to_s
+          }
+        end
+  #      data: "a"
+      }
+      render :json => memo
+    end
   end  
+  
+  
+  def android_get_edit_memo
+    if params[:pass]=='sE33crxWxdNL' 
+    micropost=Micropost.find(params[:memo_id])
+      memo={
+        id: micropost.id,
+        title: micropost.title,
+        body: micropost.body,
+        updated_at: micropost.updated_at.to_s
+        }
+      render :json => memo
+    end
+  end
+  
+  def android_insert_memo
+    if params[:pass]=='sE33crxWxdNL'
+      if params[:memo_id]=="0"
+#        新規作成の場合
+        @user=User.find(params[:user_id])
+        @micropost=@user.microposts.build({title: params[:title], body: params[:body]})
+        @micropost.save
+      else
+#        更新の場合
+        @micropost=Micropost.find(params[:memo_id])
+        if params[:title]==""
+          params[:title]="無題のノート"
+        end
+        @micropost.update({title: params[:title], body: params[:body], trash: false})
+      end
+    end
+  end
+  
+  def android_trash
+    if params[:pass]=='sE33crxWxdNL'
+      @micropost=Micropost.find(params[:memo_id])
+      @micropost.update({trash: true})
+    end
+  end
+  
+  def android_delete
+    if params[:pass]=='sE33crxWxdNL'
+      Micropost.find(params[:memo_id]).destroy
+    end
+  end
   
   def ajax_form
     @micropost=Micropost.find(params[:id]);
@@ -155,6 +202,10 @@ class MicropostsController < ApplicationController
     end
   end
   
+  def trash_view
+    @trash=Micropost.find(params[:id])
+  end
+  
   def mobile_new
     @micropost=current_user.microposts.build 
     @micropost.save
@@ -179,6 +230,16 @@ class MicropostsController < ApplicationController
   
   def mobile_edit
     @micropost=Micropost.find(params[:id])
+  end
+  
+  def mobile_trash
+    @micropost=Micropost.find(params[:id])
+    if @micropost.update(trash: true)
+      @memo_items=current_user.memo
+      @user=current_user
+    else
+      render 'edit'
+    end
   end
   
   def mobile_trash_index
@@ -208,6 +269,22 @@ class MicropostsController < ApplicationController
     @user=current_user
     @memo_items=Micropost.where(user_id: @user.id, trash: true)
   end
+  
+  def mobile_delete_from_trash_view
+    Micropost.find(params[:id]).destroy
+    @user=current_user
+    @memo_items=Micropost.where(user_id: @user.id, trash: true)
+  end
+  
+  def mobile_restore_from_trash_view
+    @micropost=Micropost.find(params[:id])
+    if @micropost.update(trash: false)
+      @user=current_user
+      @memo_items=Micropost.where(user_id: @user.id, trash: true)
+    end
+  end
+  
+  
   
   private
     

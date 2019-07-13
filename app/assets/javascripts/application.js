@@ -28,10 +28,49 @@
 //  });
 //});
 
+
+
 $(function () {
 //  ('.fade-in').fadeIn(3000);
   /* bootstrapのtooltipを有効にする */
   $('[data-toggle="tooltip"]').tooltip();
   
+//  var page=$('.mobile-history').html();
+//  history.replaceState({page: page}, null, '');
+//  console.log('mobile_memo_items.js.erb');
+  
+  /* pushStateを利用して、戻る、進むボタンを押したときの挙動を制御 */
+  var page=$('.mobile-history').html();
+  history.replaceState({page: page}, null, '');
+  console.log('application');
+  $(window).on('popstate', function(e){
+    if(e.originalEvent.state!=null){
+      console.log('app.js'); console.log(e.originalEvent.state);
+      
+      $(".mobile-history").html(e.originalEvent.state.page);
+    }else{
+      console.log('null');
+    }
+  });
+  
+  var page=$('.history').html();
+  history.replaceState({page: page}, null, '');
+  console.log('pc');
+  $(window).on('popstate', function(e){
+    if(e.originalEvent.state!=null){
+      console.log('pc.js'); console.log(e.originalEvent.state);
+
+      $(".history").html(e.originalEvent.state.page);
+    }else{
+      console.log('null');
+    }
+  });
 });
+
+//  history.pushState(null, null, '');
+//  history.pushState({page: "application.js.erb, pushstate"}, null, '');
+//history.replaceState({page: "application.js"}, null, '');
+
+
+
 

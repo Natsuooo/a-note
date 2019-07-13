@@ -1,3 +1,6 @@
 $('.ajax-index').html("<%= j(render 'microposts/trash_items') %>");
 $('.memo-title').html("<%= j(render 'microposts/memo_title') %>");
 $('.ajax-form').html("<%= j(render 'microposts/trash_view') %>");
+console.log('trash-index');
+var page=$('.history').html();
+history.pushState({page: page}, null, '');

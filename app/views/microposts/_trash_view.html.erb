@@ -35,14 +35,21 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "削除する", micropost_path(@trash), class: "btn btn-primary trash_button", method: "delete", remote: true, "data-dismiss": "modal" %>
+        <%= link_to "削除する", micropost_path(@trash), class: "btn btn-primary trash_button", method: "delete", remote: true, "data-dismiss": "modal", id: "#{@trash.id}" %>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  $('form').change(function(){
-    Rails.fire($('form')[0], 'submit');
+  $('.trash_button').click(function() {
+    var id=$(this).attr("id");
+    console.log(id);
+    //    $('#trash-item'+id).remove();
+    $('.trash-item-'+id).remove();
   });
+  
+  /* bootstrapのtooltipを有効にする */
+  $('[data-toggle="tooltip"]').tooltip(); 
+
 </script>

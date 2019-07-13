@@ -1,10 +1,10 @@
 <% @memo_items.each do |item| %>
-<div class="list-group-item list-group-item-action flex-column align-items-start memo-item-div">
+<div class="list-group-item list-group-item-action flex-column align-items-start memo-item-div" id="memo-item-<%= item.id %>">
 
   <div class="row mb-2">
 
     <!-- メモをクリックしたときのリンク -->
-    <a href="<%= mobile_trash_view_micropost_path(item) %>" data-remote="true"></a>
+    <a href="<%= mobile_trash_view_micropost_path(item) %>" data-remote="true" class="memo-item-link"></a>
 
     <div class="col index-title">
       <%= truncate(item.title, length: 30) %>
@@ -12,7 +12,7 @@
 
     <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#exampleModalCenter<%= item.id %>">
 
-      <a href="<%= mobile_restore_path(item) %>" style="z-index: 3; position: relative" data-remote="true"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1 restore-tooltip" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
+      <a href="<%= mobile_restore_path(item) %>" style="z-index: 3; position: relative" data-remote="true"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1 restore-tooltip restore-button" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す" data-id="<%= item.id %>"></a>
 
       <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="削除する">
     </span>
@@ -35,11 +35,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        メモを完全に削除しますか？
+        メモ「<%= item.title %>」を完全に削除しますか？
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "削除する", mobile_delete_path(item), class: "btn btn-primary trash_button", method: "get", remote: true, "data-dismiss": "modal" %>
+        <%= link_to "削除する", mobile_delete_path(item), class: "btn btn-primary trash_button", method: "get", remote: true, "data-dismiss": "modal", data: {id: "#{item.id}"} %>
       </div>
     </div>
   </div>
@@ -54,6 +54,16 @@
 
 
 <script>
+  
+  /* ゴミ箱に移動するボタンをクリックしたら、その要素を削除する */
+  $('.trash_button').click(function() {
+    var id=$(this).data("id");
+    $('#memo-item-'+id).remove();
+  });
+  $('.restore-button').click(function() {
+    var id=$(this).data("id");
+    $('#memo-item-'+id).remove();
+  });
   $(function () {
     /* bootstrapのtooltipを有効にする */
     $('[data-toggle="tooltip"]').tooltip(); 

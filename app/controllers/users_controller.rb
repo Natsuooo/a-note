@@ -31,13 +31,15 @@ class UsersController < ApplicationController
   end
   
   def android_register
-    @user=User.new(email: params[:user_email].downcase, password: params[:user_password])
-    if @user.save
-      data={data: user.id}
-      render :json => data
-    else
-      data={data: "NG"}
-      render :json => data
+    if params[:pass]=='sE33crxWxdNL'
+      @user=User.new(email: params[:user_email].downcase, password: params[:user_password])
+      if @user.save
+        data={data: @user.id}
+        render :json => data
+      else
+        data={data: "NG"}
+        render :json => data
+      end
     end
   end
   
@@ -51,6 +53,8 @@ class UsersController < ApplicationController
       @user=User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+  
+  
   
     def check_user_agent
 #      ua=request.env["HTTP_USER_AGENT"]

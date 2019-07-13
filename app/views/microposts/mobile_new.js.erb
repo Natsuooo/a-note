@@ -1,3 +1,7 @@
 $('.ajax-index').html("<%= j(render 'microposts/mobile_ajax_form') %>");
 $('.navbar').html("<%= j(render 'microposts/mobile_form_navbar') %>");
 $('.form-title').focus();
+var page=$('.mobile-history').html();
+history.pushState({page: page}, null, '');
+console.log('mobile_new.js.erb');
+

@@ -28,11 +28,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        メモをゴミ箱に移動しますか？
+        メモ「<%= @micropost.title %>」をゴミ箱に移動しますか？
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "ゴミ箱に移動する", to_trash_micropost_path(@micropost), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal" %>
+        <%= link_to "ゴミ箱に移動する", to_trash_micropost_path(@micropost), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal", id: "#{@micropost.id}" %>
       </div>
     </div>
   </div>
@@ -40,6 +40,12 @@
 
 
 <script>
+  /* 削除ボタンをクリックしたら、その要素を削除する */
+  $('.trash_button').click(function() {
+    var id=$(this).attr("id");
+    $('#memo-item-'+id).remove();
+  });
+
   $('form').change(function(){
     Rails.fire($('form')[0], 'submit');
   });

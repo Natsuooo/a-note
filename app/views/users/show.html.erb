@@ -1,6 +1,4 @@
 <% provide(:title, 'メモ一覧') %>
-<span class="scroll-bar">
-
 <%= render 'users/sidebar' %>
 
 <%= render 'shared/flash_messages' %>
@@ -8,7 +6,7 @@
 
 
 <!-- 576px以下の時のデザイン -->
-<div class="d-sm-none container-fluid">
+<div class="d-sm-none container-fluid mobile-history">
   <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="margin-left: -25px; margin-right: -25px; z-index: 3;">
     <%= render 'layouts/navbar' %>
   </nav>
@@ -26,8 +24,10 @@
 </div>
 
 
+
+
 <!-- 576px以上の時のデザイン -->
-<div class="container-fluid d-none d-sm-block">
+<div class="container-fluid d-none d-sm-block history">
  
   <div class="row">
    
@@ -40,18 +40,21 @@
       </p> 
                    
       <div class="index list-group list-group-flush ajax-index word-break">
-        <%= render ('microposts/memo_items') %>
+        <%# @microposts.any? %>
+          <%= render ('microposts/memo_items') %>
+        <%# end %>
       </div>
     </div>
     
     <div class="col-sm ajax-form">
-    
-      <%= render ('microposts/ajax_form') %>
-      
+      <% unless @micropost.nil? %>
+        <%= render ('microposts/ajax_form') %>
+      <% end %>
     </div>
     
   </div>
 </div>
 
 
-</span>
+
+

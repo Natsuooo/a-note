@@ -1,10 +1,10 @@
 <% @memo_items.each do |item| %>
-<div class="list-group-item list-group-item-action flex-column align-items-start memo-item-div">
+<div class="list-group-item list-group-item-action flex-column align-items-start memo-item-div" id="memo-item-<%= item.id %>">
 
   <div class="row mb-2">
 
     <!-- メモをクリックしたときのリンク -->
-    <a href="<%= mobile_edit_micropost_path(item) %>" data-remote="true"></a>
+    <a href="<%= mobile_edit_micropost_path(item) %>" data-remote="true" class="memo-item-link"></a>
 
     <div class="col index-title">
       <%= truncate(item.title, length: 30) %>
@@ -32,11 +32,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        メモをゴミ箱に移動しますか？
+        メモ「<%= item.title %>」をゴミ箱に移動しますか？
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "ゴミ箱に移動する", to_trash_micropost_path(item), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal" %>
+        <%= link_to "ゴミ箱に移動する", to_trash_micropost_path(item), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal", id: "#{item.id}" %>
       </div>
     </div>
   </div>
@@ -51,6 +51,33 @@
 
 
 <script>
+//  $(window).on('popstate', function(e){
+//    if(e.originalEvent.state!=null){
+//      console.log('app.js'); console.log(e.originalEvent.state);
+//      $(".mobile-history").html(e.originalEvent.state.page);
+//      //      location.reload();
+//    }else{
+//      console.log('null');
+//    }
+//  });
+//  $(window).on('popstate', function(e){
+//    console.log(e.originalEvent.state);
+//    $(".mobile-history").html(e.originalEvent.state.page);
+//  });
+//  $('.btn').click(function(){
+//    history.pushState(null, null, '');
+//  var page=('.history').html();
+//  var page=$('.mobile-history').html();
+//    history.replaceState({page: page}, null, '');
+  
+//    history.replaceState({page: "test"}, null, '');
+//  });
+  
+  /* ゴミ箱に移動するボタンをクリックしたら、その要素を削除する */
+  $('.trash_button').click(function() {
+    var id=$(this).attr("id");
+    $('#memo-item-'+id).remove();
+  });
   $(function () {
     /* bootstrapのtooltipを有効にする */
     $('[data-toggle="tooltip"]').tooltip();

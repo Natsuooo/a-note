@@ -29,11 +29,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        メモをゴミ箱に移動しますか？
+        メモ「<%= @micropost.title %>」をゴミ箱に移動しますか？
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "ゴミ箱に移動する", to_trash_micropost_path(@micropost), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal" %>
+        <%= link_to "ゴミ箱に移動する", mobile_trash_path(@micropost), class: "btn btn-primary trash_button", method: "get", remote: true, "data-dismiss": "modal" %>
       </div>
     </div>
   </div>
@@ -49,4 +49,57 @@
       Rails.fire($('form')[0], 'submit');
     }
   });
+//  window.addEventListener("popstate", function(event){
+//    if(event.state != null) {
+//      //バックボタンた押されるたびに、pushしたpageオブジェクトのデータがまるごとpopされます。
+//      $(".ajax-index").html(event.state.page); 
+//    }
+//  }
+//  $(window).on('popstate', function(e){
+//    $('.back').trigger('click');
+//    console.log('mobile_ajax'); console.log(e.originalEvent.state);
+//    $(".mobile-history").html(e.originalEvent.state.page);
+//    history.pushState(null, null, null);
+//    $.ajax({
+//      url: "microposts/back_to_index/mobile",
+//      type: "GET"
+//    });
+//  });
+    
+//    if (!e.originalEvent.state) return; // 初回アクセス時に再読み込みしてしまう対策
+//    loadContents(location.pathname);
+    
+//    history.pushState("hoge", null, '');
+    
+//    if(e.originalEvent.state!=null){
+//      console.log('mobile_ajax'); console.log(e.originalEvent.state);
+//      $(".mobile-history").html(e.originalEvent.state.page);
+//    }else{
+//      console.log('null');
+//    }
+    
+    
+    
+//    history.pushState("hoge", null, '');
+//    return;
+
+//  });
+//  window.onpopstate = function(event) {
+//    console.log(event.state);
+//    
+//  };
+  // History API が使えるブラウザかどうかをチェック
+//  if( window.history && window.history.pushState ){
+//    //. ブラウザ履歴に１つ追加
+//    history.pushState( "nohb", null, "" );
+//    $(window).on( "popstate", function(event){
+//      //. このページで「戻る」を実行
+//      if( !event.originalEvent.state ){
+//        //. もう一度履歴を操作して終了
+//        history.pushState( "nohb", null, "" );
+//        console.log(event.state);
+//        return;
+//      }
+//    });
+//  }
 </script>

@@ -1,2 +1,4 @@
 $('.ajax-index').html("<%= j(render 'mobile_microposts/trash_view') %>");
 $('.navbar').html("<%= j(render 'microposts/mobile_trash_view_navbar') %>");
+var page=$('.mobile-history').html();
+history.pushState({page: page}, null, '');

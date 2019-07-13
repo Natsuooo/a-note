@@ -5,12 +5,15 @@ html, body{
   margin: 0;
   padding: 0;
 }
+//
+//.scroll-bar{
+//  overflow-x: hidden;
+//  overflow-y: hidden;
+//}
 
-.scroll-bar{
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
+//body {
+//  position: relative;
+//}
 
 /* ナビバー */
 .navbar-toggler{
@@ -142,7 +145,7 @@ html, body{
   position: relative;
 }
 
-.memo-item-div a{
+.memo-item-link{
   z-index: 2; 
   position: absolute; 
   top: 0; 
@@ -157,3 +160,7 @@ html, body{
   cursor: pointer;
   cursor: hand;
 }
+
+
+
+

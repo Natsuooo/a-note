@@ -1,32 +1,102 @@
-<div class="container-fluid bg-primary">
-  <div class="row align-items-center">
-    <div class="col-6 pt-5 pb-5">
+<div class="container-fluid">
+  <div class="row align-items-center bg-primary">
+    <div class="col-sm-6 pt-5 pb-5">
       <h1 class="text-white">使いやすいのに、無料。シンプルで最高のメモ帳アプリ。</h1>
       <p class="text-white mt-4" style="font-size: 25px;">
         A-noteなら、いつでも、どこでも簡単にメモ帳を作成できます。余計な機能を省き、シンプルで最高の使いやすさを実現。もちろん、広告もありません。何と言っても、無料です。
       </p>
-      <%= link_to "無料で新規登録", signup_path, class: "btn btn btn-light text-primary pt-3 pb-3 pl-5 pr-5 mt-4" %>
+      <%= link_to "無料で新規登録", signup_path, class: "btn btn-light text-primary btn-block d-sm-none pt-3 pb-3 mt-4" %>
+      <%= link_to "無料で新規登録", signup_path, class: "btn btn-light text-primary pt-3 pb-3 pl-5 pr-5 mt-4 d-none d-sm-block" %>
     </div>
-    <div class="col-6 text-center">
+    <div class="col-sm-6 text-center">
       <%= image_tag 'computer.svg', class: 'w-50 mb-4' %>
       <%= image_tag 'smartphone.svg', class: 'w-25 mt-5' %>
+    </div>
+  </div>
+  
+  <div class="row mt-2 mb-2">
+    
+    <div class="col text-center">
+      <%= image_tag 'google-play-badge.png', style: 'width: 150px;' %>
+    </div>
+    <div class="col text-center">
+      <%= link_to "Web版 A-note", login_path, class: "btn btn-outline-primary mt-2" %>
+    </div>
+  </div>
+  <div class="row align-items-center bg-light pt-5 pb-5">
+    <div class="col">
+      <h1 class="text-primary mb-4">シンプルで使いやすい。</h1>
+      <p class="lead">
+        必要な機能に絞って実装したことにより、分かりやすいインターフェースを実現。
+      </p>
+    </div>
+    <div class="col text-center">
+      <%= image_tag 'hand-graving-smartphone.svg', class: 'w-50 mr-2' %>
+    </div>
+  </div>
+  
+  <div class="row align-items-center pt-5 pb-5">
+    <div class="col text-center">
+      <%= image_tag 'hand-graving-smartphone.svg', class: 'w-50 mr-2' %>
+    </div>
+    <div class="col">
+      <h1 class="text-primary mb-4">マルチデバイス対応。</h1>
+      <p class="lead">
+        Androidアプリに加え、スマホからでも、PCからでもアクセスできます。
+      </p>
+    </div>
+  </div>
+  
+  <div class="row align-items-center bg-light pt-5 pb-5">
+    <div class="col">
+      <h1 class="text-primary mb-4">完全無料。広告なし。</h1>
+      <p class="lead">
+        全ての機能を無料でご利用いただけます。広告もないので、快適に使用できます。
+      </p>
+    </div>
+    <div class="col text-center">
+      <%= image_tag 'hand-graving-smartphone.svg', class: 'w-50 mr-2' %>
+    </div>
+  </div>
+  
+  <div class="row align-items-center pt-5 pb-5">
+    <div class="col text-center">
+      <%= image_tag 'hand-graving-smartphone.svg', class: 'w-50 mr-2' %>
+    </div>
+    <div class="col">
+      <h1 class="text-primary mb-4">クラウドデータベース。</h1>
+      <p class="lead">
+        メモデータはクラウドで管理。仮にご自身のデバイスを紛失されても、データは残ります。
+      </p>
+    </div>
+  </div>
+  
+  <div class="row align-items-center bg-light pt-5 pb-5">
+    <div class="col">
+      <h1 class="text-primary mb-4">自動保存機能搭載。</h1>
+      <p class="lead">
+        うっかりアプリを閉じても大丈夫。メモは自動で保存されるので、安心してメモ帳を管理できます。
+      </p>
+    </div>
+    <div class="col text-center">
+      <%= image_tag 'hand-graving-smartphone.svg', class: 'w-50 mr-2' %>
+    </div>
+  </div>
+  
+  <div class="row align-items-center pt-5 pb-5">
+    <div class="col text-center">
+      <%= image_tag 'hand-graving-smartphone.svg', class: 'w-50 mr-2' %>
+    </div>
+    <div class="col">
+      <h1 class="text-primary mb-4">嬉しいゴミ箱機能。</h1>
+      <p class="lead">
+        削除したメモはゴミ箱から閲覧・復元できるので、安心してメモ帳を整理できます。
+      </p>
     </div>
   </div>
   
 </div>
 
 
-<div class="center jumbotron text-center">
-  <h1>A-note</h1>
-
-
-
-  <h2>
-    サインアップ以前の人に表示する紹介画面
-  </h2>
-
-  
-
-</div>
 
 <%= render 'layouts/footer' %>

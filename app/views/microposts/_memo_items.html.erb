@@ -1,18 +1,34 @@
 <% @memo_items.each do |item| %>
-<div class="list-group-item list-group-item-action flex-column align-items-start memo-item-div">
+<div class="list-group-item list-group-item-action flex-column align-items-start memo-item-div" style=" position: relative;" id="memo-item-<%= item.id %>">
 
   <div class="row mb-2">
   
     <!-- メモをクリックしたときのリンク -->
-    <a href="<%= ajax_form_path(item) %>" data-remote="true"></a>
-   
+    <a href="<%= ajax_form_path(item) %>" data-remote="true" class="memo-item-link"></a>
+    
+
     <div class="col index-title">
       <%= truncate(item.title, length: 30) %>
     </div>
-    
+
     <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#index-modal-<%= item.id %>">
       <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" title="ゴミ箱に移動する">
     </span>
+    
+<!--
+    <a href="#modal<%#= item.id %>" class="modalOpen memo-item-modal" style="position: relative;">
+      <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" title="ゴミ箱に移動する">
+    </a>
+-->
+
+    
+    <%#= render partial: 'microposts/modal_trash', locals: {item: item} %>
+    
+<!--
+    <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#index-modal-<%#= item.id %>">
+      <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" title="ゴミ箱に移動する">
+    </span>
+-->
     
     <div class="text-right index-date">
       <small class="text-muted">
@@ -32,11 +48,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        メモをゴミ箱に移動しますか？
+        メモ「<%= item.title %>」をゴミ箱に移動しますか？
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "ゴミ箱に移動する", to_trash_micropost_path(item), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal" %>
+        <%= link_to "ゴミ箱に移動する", to_trash_micropost_path(item), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal", id: "#{item.id}" %>
       </div>
     </div>
   </div>
@@ -44,12 +60,43 @@
 
 <% end %>
 
-
 <script>
+  /* ゴミ箱に移動するボタンをクリックしたら、その要素を削除する */
+  $('.trash_button').click(function() {
+    var id=$(this).attr("id");
+    $('#memo-item-'+id).remove();
+  });
+  
   $(function () {
     /* bootstrapのtooltipを有効にする */
     $('[data-toggle="tooltip"]').tooltip();
-
-//    $('.fade-in').fadeIn(1000);
+    
+    /* Bootstrap Modalを動作させる */
+    $('.modal').appendTo("body");
+    
+    
+    
+//    $(".modalOpen").click(function(){
+//
+//      var navClass = $(this).attr("class"),
+//          href = $(this).attr("href");
+//
+//      $(href).fadeIn();
+//      $(this).addClass("open");
+//      return false;
+//    });
+//
+//    // モーダルウィンドウが閉じるときの処理    
+//    $(".modalClose").click(function(){
+//      $(this).parents(".modal").fadeOut();
+//      $(".modalOpen").removeClass("open");
+//      return false;
+//    });  
+//
+//    
   });
+  
+  
 </script>
+
+
