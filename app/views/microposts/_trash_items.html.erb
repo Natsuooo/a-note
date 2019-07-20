@@ -13,7 +13,7 @@
     
     <span class="align-text-top mr-1 memo-item-modal" data-toggle="modal" data-target="#trash-index-modal-<%= item.id %>">
      
-      <a href="<%= restore_micropost_path(item) %>" style="z-index: 3; position: relative" data-remote="true"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1 restore-tooltip" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
+      <a href="<%= restore_micropost_path(item) %>" style="z-index: 3; position: relative" data-remote="true" class="p-1 restore-button" data-id="<%= item.id %>"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1 restore-tooltip" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
      
       <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="削除する">
     </span>
@@ -53,10 +53,21 @@
   /* 削除ボタンをクリックしたら、その要素を削除する */
   $('.trash_button').click(function() {
     var id=$(this).attr("id");
-    console.log(id);
 //    $('#trash-item'+id).remove();
     $('.trash-item-'+id).remove();
   });
+  
+  $('.restore-button').click(function() {
+    var id=$(this).data("id");
+    //    $('#trash-item'+id).remove();
+    $('.trash-item-'+id).remove();
+  });
+  
+  $('.restore-tooltip').click(function(){
+    $('.tooltip').remove();
+  });
+  
+  
   
   $(function () {
     /* bootstrapのtooltipを有効にする */
@@ -65,5 +76,7 @@
   
   /* Bootstrap Modalを動作させる */
   $('.modal').appendTo("body");
+  
+  
   
 </script>

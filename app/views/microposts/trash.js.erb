@@ -1,7 +1,8 @@
 //$('#memo-item-<%= @trash.id %>').remove();
 $('.ajax-form').html("<%= j(render 'microposts/ajax_form') %>");
-//$('.ajax-index').html("<%= j(render 'microposts/memo_items') %>");
+$('.ajax-index').html("<%= j(render 'microposts/memo_items') %>");
 $('[data-toggle="tooltip"]').tooltip().on("show.bs.tooltip", function() {
   $(".tooltip").remove();
 });
 //$('[data-toggle="tooltip"]').tooltip();
+//console.log("trashしました");

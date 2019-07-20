@@ -88,14 +88,20 @@ class MicropostsController < ApplicationController
     @user=current_user
     @trash=Micropost.find(params[:id])
 #    if @micropost.update(trash: true)
+    @count=Micropost.where(user_id: @user.id, trash: false).count
+    if @count=="1"
+      @micropost=[]
+    else  
+      @micropost=current_user.form
+    end
     if @trash.update(trash: true)
 #      render ('trash')
 #      redirect_to @user
       @memo_items=current_user.memo
-      @micropost=current_user.form
     else
       render 'edit'
     end
+    
   end
   
   def destroy
@@ -107,9 +113,13 @@ class MicropostsController < ApplicationController
   end
   
   def trash_index
+#    @user=current_user
+#    @memo_items=Micropost.where(user_id: @user.id, trash: true)
+#    @trash=Micropost.where(user_id: @user.id, trash: true).first
+    
     @user=current_user
-    @memo_items=Micropost.where(user_id: @user.id, trash: true)
-    @trash=Micropost.where(user_id: @user.id, trash: true).first
+    @memo_items=Micropost.where(user_id: params[:id], trash: true)
+    @trash=Micropost.where(user_id: params[:id], trash: true).first
   end
   
     
@@ -207,7 +217,8 @@ class MicropostsController < ApplicationController
   end
   
   def mobile_new
-    @micropost=current_user.microposts.build 
+    @user=current_user
+    @micropost=@user.microposts.build 
     @micropost.save
   end
   
@@ -229,6 +240,7 @@ class MicropostsController < ApplicationController
   end
   
   def mobile_edit
+    @user=current_user
     @micropost=Micropost.find(params[:id])
   end
   
@@ -243,7 +255,9 @@ class MicropostsController < ApplicationController
   end
   
   def mobile_trash_index
+    @user=current_user
     @memo_items=Micropost.where(user_id: params[:id], trash: true)
+    @micropost=Micropost.where(user_id: params[:id], trash: true).first
   end
   
   def mobile_trash_view
@@ -252,8 +266,13 @@ class MicropostsController < ApplicationController
   end
   
   def mobile_back_to_index
-    @memo_items=current_user.memo
-    @user=current_user
+    @micropost=Micropost.find(params[:id])
+    if params[:title]==""
+      params[:title]="無題のノート"
+    end
+    @micropost.update_attributes(title: params[:title], body: params[:body])
+    
+    redirect_to "/users/#{@micropost.user_id}"
   end
   
   def mobile_restore
@@ -261,6 +280,7 @@ class MicropostsController < ApplicationController
     if @micropost.update(trash: false)
       @user=current_user
       @memo_items=Micropost.where(user_id: @user.id, trash: true)
+      @trash=Micropost.where(user_id: @user.id, trash: true).first
     end
   end
   
@@ -268,12 +288,17 @@ class MicropostsController < ApplicationController
     Micropost.find(params[:id]).destroy
     @user=current_user
     @memo_items=Micropost.where(user_id: @user.id, trash: true)
+    @trash=Micropost.where(user_id: @user.id, trash: true).first
+    
   end
   
   def mobile_delete_from_trash_view
-    Micropost.find(params[:id]).destroy
-    @user=current_user
-    @memo_items=Micropost.where(user_id: @user.id, trash: true)
+    trash=Micropost.find(params[:id])
+    trash.destroy
+#    @trash=Micropost.find(params[:id])
+    redirect_to "/users/#{trash.user_id}/trash"
+    #    @memo_items=Micropost.where(user_id: @user.id, trash: true)
+    #    @trash=Micropost.where(user_id: @user.id, trash: true).first
   end
   
   def mobile_restore_from_trash_view
@@ -282,6 +307,7 @@ class MicropostsController < ApplicationController
       @user=current_user
       @memo_items=Micropost.where(user_id: @user.id, trash: true)
     end
+    redirect_to "/users/#{@micropost.user_id}/trash"
   end
   
   

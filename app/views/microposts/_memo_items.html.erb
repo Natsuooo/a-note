@@ -64,6 +64,7 @@
   /* ゴミ箱に移動するボタンをクリックしたら、その要素を削除する */
   $('.trash_button').click(function() {
     var id=$(this).attr("id");
+    console.log(id);
     $('#memo-item-'+id).remove();
   });
   

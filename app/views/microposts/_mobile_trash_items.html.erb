@@ -48,13 +48,15 @@
 <% end %>
 
 <!-- 新規作成ボタン -->
+<!--
 <button type="button" class="btn btn-link shadow btn-lg bg-primary" id="createButton" style="z-index:2;">
-  <%= link_to image_tag("create-hover.svg", alt: "create", style: "width: 25px; position: fixed; right: 35.5px; bottom: 35.5px;"), mobile_new_micropost_path, remote: 'true' %>
+  <%#= link_to image_tag("create-hover.svg", alt: "create", style: "width: 25px; position: fixed; right: 35.5px; bottom: 35.5px;"), mobile_new_micropost_path, remote: 'true' %>
 </button>
+-->
 
 
 <script>
-  
+
   /* ゴミ箱に移動するボタンをクリックしたら、その要素を削除する */
   $('.trash_button').click(function() {
     var id=$(this).data("id");
@@ -68,5 +70,4 @@
     /* bootstrapのtooltipを有効にする */
     $('[data-toggle="tooltip"]').tooltip(); 
   });
-
 </script>

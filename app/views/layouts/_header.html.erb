@@ -1,6 +1,7 @@
-<header class="navbar shadow-sm">
-  <span class="navbar-brand" style="font-family: 'Comfortaa', cursive;">
+<header class="navbar navbar-light bg-white shadow-sm">
+  <a class="navbar-brand" href="/" style="font-family: 'Comfortaa', cursive;">
+    <%= image_tag "apple-touch-icon.png", style: "width: 25px; height: 25px;", class: "mb-1" %>
     A-note
-  </span>
-  <%= link_to "ログイン", login_path, class: "btn btn-outline-primary" %>
+  </a>
+  <%= link_to "ログイン", login_path, class: "btn btn-outline-primary btn-sm" %>
 </header>

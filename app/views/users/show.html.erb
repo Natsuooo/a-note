@@ -3,58 +3,92 @@
 
 <%= render 'shared/flash_messages' %>
 
+<body class="history" style="overflow-x: hidden">
 
+  <!-- 576px以下の時のデザイン -->
+  <div class="d-sm-none container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="margin-left: -25px; margin-right: -25px; z-index: 3;">
+      <%= render 'layouts/navbar' %>
+    </nav>
 
-<!-- 576px以下の時のデザイン -->
-<div class="d-sm-none container-fluid mobile-history">
-  <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="margin-left: -25px; margin-right: -25px; z-index: 3;">
-    <%= render 'layouts/navbar' %>
-  </nav>
-  
-  <%# if @memo_items.any? %>
-<!--  <div class="list-group list-group-flush">-->
-      <%#= render @memo_items %>
-<!--    </div>-->
-  <%#end %>
-  
-  <div class="index list-group list-group-flush ajax-index word-break">
-    <%= render ('microposts/mobile_memo_items') %>
-  </div>
-  
-</div>
-
-
-
-
-<!-- 576px以上の時のデザイン -->
-<div class="container-fluid d-none d-sm-block history">
- 
-  <div class="row">
-   
-    <%= render('microposts/sidenav') %>
+    <%# if @memo_items.any? %>
+  <!--  <div class="list-group list-group-flush">-->
+        <%#= render @memo_items %>
+  <!--    </div>-->
+    <%#end %>
     
-    <div class="col-5 border-right border-left">
-     
-      <p class="memo-title mt-4 mb-4 ml-3" style="font-size: 26px; font-family: 'Comfortaa', cursive;">
-        A-note
-      </p> 
-                   
-      <div class="index list-group list-group-flush ajax-index word-break">
-        <%# @microposts.any? %>
-          <%= render ('microposts/memo_items') %>
-        <%# end %>
+    
+
+    <div class="index list-group list-group-flush ajax-index word-break">
+      <%= render ('microposts/mobile_memo_items') %>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- 576px以上の時のデザイン -->
+  <div class="container-fluid d-none d-sm-block">
+
+    <div class="row">
+
+      <%= render('microposts/sidenav') %>
+
+      <div class="col-5 border-right border-left">
+
+        <p class="memo-title mt-4 mb-4 ml-3" style="font-size: 26px; font-family: 'Comfortaa', cursive;">
+          A-note
+        </p> 
+
+        <div class="index list-group list-group-flush ajax-index word-break">
+          <%# @microposts.any? %>
+            <%= render ('microposts/memo_items') %>
+          <%# end %>
+        </div>
       </div>
-    </div>
-    
-    <div class="col-sm ajax-form">
-      <% unless @micropost.nil? %>
-        <%= render ('microposts/ajax_form') %>
-      <% end %>
-    </div>
-    
-  </div>
-</div>
 
+      <div class="col-sm ajax-form">
+        <% unless @micropost.nil? %>
+          <%= render ('microposts/ajax_form') %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+$(function(){
+  /* pushStateを利用して、戻る、進むボタンを押したときの挙動を制御 */
+//  var page=$('.mobile-history').html();
+//  history.replaceState({page: page}, null, '');
+//  console.log('application');
+//  $(window).on('popstate', function(e){
+//    if(e.originalEvent.state!=null){
+//      console.log('app.js'); console.log(e.originalEvent.state);
+//
+//      $(".mobile-history").html(e.originalEvent.state.page);
+//    }else{
+//      console.log('null');
+//    }
+//  });
+
+  var page=$('.history').html();
+  history.replaceState({page: page}, null, '');
+  $(window).on('popstate', function(e){
+    if(e.originalEvent.state!=null){
+//      console.log('pc.js'); 
+//      console.log(e.originalEvent.state);
+
+      $(".history").html(e.originalEvent.state.page);
+    }else{
+      console.log('null');
+    }
+  });
+});
+</script>
+
+</body>
 
 
 

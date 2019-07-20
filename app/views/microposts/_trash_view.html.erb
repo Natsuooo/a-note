@@ -12,7 +12,7 @@
   <div class="mt-1 mr-2">
     <span class="" data-toggle="modal" data-target="#trash-modal-<%= @trash.id %>">
 
-      <a href="<%= restore_micropost_path(@trash) %>" style="z-index: 3; position: relative" data-remote="true"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
+      <a href="<%= restore_micropost_path(@trash) %>" style="z-index: 3; position: relative" data-remote="true" class="p-1"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
 
       <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px; cursor: pointer; cursor: hand;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" title="削除する">
     </span>

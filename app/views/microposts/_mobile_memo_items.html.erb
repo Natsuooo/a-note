@@ -36,7 +36,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "ゴミ箱に移動する", to_trash_micropost_path(item), class: "btn btn-primary trash_button", method: "patch", remote: true, "data-dismiss": "modal", id: "#{item.id}" %>
+        <%= link_to "ゴミ箱に移動する", mobile_trash_path(item), class: "btn btn-primary trash_button", method: "get", remote: true, "data-dismiss": "modal", id: "#{item.id}" %>
       </div>
     </div>
   </div>

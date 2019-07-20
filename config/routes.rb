@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   post 'android/insert_memo', to: 'microposts#android_insert_memo'
   post 'android/trash', to: 'microposts#android_trash'
   post 'android/delete', to: 'microposts#android_delete'
+  post 'android/password_reset', to: 'password_resets#android_update'
   
   get 'microposts/:id/ajax_form', to: 'microposts#ajax_form', as: 'ajax_form'
   
@@ -35,12 +36,13 @@ Rails.application.routes.draw do
   get 'microposts/:id/edit/mobile', to: 'microposts#mobile_edit', as: 'mobile_edit_micropost'
   get 'microposts/:id/trash_index/mobile', to: 'microposts#mobile_trash_index', as: 'mobile_trash_index_micropost'
   get 'microposts/:id/trash/view/mobile', to: 'microposts#mobile_trash_view', as: 'mobile_trash_view_micropost'
-  get 'microposts/back_to_index/mobile', to: 'microposts#mobile_back_to_index', as: 'mobile_back_to_index'
+  post 'microposts/:id/back_to_index/mobile', to: 'microposts#mobile_back_to_index', as: 'mobile_back_to_index'
   get 'microposts/:id/restore/mobile', to: 'microposts#mobile_restore', as: 'mobile_restore'
   get 'microposts/:id/delete/mobile', to: 'microposts#mobile_delete', as: 'mobile_delete'
   get 'microposts/:id/trash/mobile', to: 'microposts#mobile_trash', as: 'mobile_trash'
   get 'microposts/:id/restore_from_trash_view/mobile', to: 'microposts#mobile_restore_from_trash_view', as: 'mobile_restore_from_trash_view'
-  get 'microposts/:id/delete_from_trash_view/mobile', to: 'microposts#mobile_delete_from_trash_view', as: 'mobile_delete_from_trash_view'
+  delete 'microposts/:id/delete_from_trash_view/mobile', to: 'microposts#mobile_delete_from_trash_view', as: 'mobile_delete_from_trash_view'
+  
  
   
   

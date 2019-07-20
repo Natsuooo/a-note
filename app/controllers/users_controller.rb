@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       remember @user
+      @user.send_register_account_email
       flash[:success] = 'シンプルで使いやすいクラウドメモ帳・ノートアプリ「A-note」へようこそ！'
       redirect_to @user
     else

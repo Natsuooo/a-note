@@ -5,4 +5,5 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "A-note | パスワードを再設定する"
   end
   
+  
 end

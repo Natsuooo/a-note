@@ -10,10 +10,11 @@
     <small class="text-muted float-right mt-2 mr-3 mb-4"><%= @trash.updated_at.strftime('%Y/%m/%d') %></small>
   </div>
   <div class="mt-1 mr-2">
+    
+
+      <a href="<%= mobile_restore_from_trash_view_path(@trash) %>" style="z-index: 3; position: relative" data-remote="false"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
+
     <span class="" data-toggle="modal" data-target="#trash-modal-<%= @trash.id %>">
-
-      <a href="<%= mobile_restore_from_trash_view_path(@trash) %>" style="z-index: 3; position: relative" data-remote="true"><img src="/app/assets/images/restore-mono.svg" alt="restore" style="width: 18px;" onmouseover="this.src='/app/assets/images/restore.svg'" onmouseout="this.src='/app/assets/images/restore-mono.svg'" class="mr-1" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="元に戻す"></a>
-
       <img src="/app/assets/images/garbage-mono.svg" alt="garbage" style="width: 20px; cursor: pointer; cursor: hand;" onmouseover="this.src='/app/assets/images/garbage.svg'" onmouseout="this.src='/app/assets/images/garbage-mono.svg'" data-toggle="tooltip" data-placement="bottom" title="削除する">
     </span>
   </div>
@@ -35,7 +36,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <%= link_to "削除する", mobile_delete_from_trash_view_path(@trash), class: "btn btn-primary trash_button", method: "get", remote: true, "data-dismiss": "modal" %>
+        <%= link_to "削除する", mobile_delete_from_trash_view_path(@trash), class: "btn btn-primary trash_button", method: "delete", remote: false, "data-dismiss": "modal" %>
       </div>
     </div>
   </div>

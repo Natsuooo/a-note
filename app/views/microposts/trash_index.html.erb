@@ -1,0 +1,96 @@
+<% provide(:title, 'メモ一覧') %>
+<%= render 'users/sidebar' %>
+
+<%= render 'shared/flash_messages' %>
+
+<body class="history scroll-bar">
+
+  <!-- 576px以下の時のデザイン -->
+  <div class="d-sm-none container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="margin-left: -25px; margin-right: -25px; z-index: 3;">
+      <%= render 'microposts/mobile_trash_index_navbar' %>
+    </nav>
+
+    <%# if @memo_items.any? %>
+    <!--  <div class="list-group list-group-flush">-->
+    <%#= render @memo_items %>
+    <!--    </div>-->
+    <%#end %>
+
+    <div class="index list-group list-group-flush ajax-index word-break">
+      <%= render ('microposts/mobile_trash_items') %>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- 576px以上の時のデザイン -->
+  <div class="container-fluid d-none d-sm-block">
+
+    <div class="row">
+
+      <%= render('microposts/sidenav') %>
+
+      <div class="col-5 border-right border-left">
+
+        <p class="memo-title mt-4 mb-4 ml-3" style="font-size: 26px;">
+          <a href="<%= user_path(@user) %>" class="mt-4 mb-4"><img src="/app/assets/images/left-arrow-mono.svg" alt="sync" style="width: 20px;" onmouseover="this.src='/app/assets/images/left-arrow.svg'" onmouseout="this.src='/app/assets/images/left-arrow-mono.svg'" class="mb-2 mr-3" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="メモ一覧に戻る"></a>
+          ゴミ箱
+        </p>
+
+        <div class="index list-group list-group-flush ajax-index word-break">
+          <%# @microposts.any? %>
+          <%= render ('microposts/trash_items') %>
+          <%# end %>
+        </div>
+      </div>
+
+      <div class="col-sm ajax-form">
+        <% unless @trash.nil? %>
+        <%= render ('microposts/trash_view') %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    $(function(){
+      /* pushStateを利用して、戻る、進むボタンを押したときの挙動を制御 */
+      //  var page=$('.mobile-history').html();
+      //  history.replaceState({page: page}, null, '');
+      //  console.log('application');
+      //  $(window).on('popstate', function(e){
+      //    if(e.originalEvent.state!=null){
+      //      console.log('app.js'); console.log(e.originalEvent.state);
+      //
+      //      $(".mobile-history").html(e.originalEvent.state.page);
+      //    }else{
+      //      console.log('null');
+      //    }
+      //  });
+
+      var page=$('.history').html();
+      history.replaceState({page: page}, null, '');
+      $(window).on('popstate', function(e){
+        if(e.originalEvent.state!=null){
+          //      console.log('pc.js'); 
+          //      console.log(e.originalEvent.state);
+
+          $(".history").html(e.originalEvent.state.page);
+        }else{
+          console.log('null');
+        }
+      });
+    });
+  
+    
+    
+  </script>
+
+</body>
+
+
+

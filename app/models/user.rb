@@ -64,5 +64,9 @@ class User < ApplicationRecord
   def form
     Micropost.where(user_id: id, trash: false).first
   end
+  
+  def send_register_account_email
+    RegisterMailer.register_account(self).deliver_now
+  end
     
 end

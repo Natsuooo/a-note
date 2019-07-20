@@ -20,6 +20,19 @@ class PasswordResetsController < ApplicationController
       render 'new'
     end
   end
+  
+  def android_update
+    if params[:pass]=='sE33crxWxdNL' 
+      @user=User.find_by(email: params[:user_email].downcase)
+      if @user
+        @user.create_reset_digest
+        @user.send_password_reset_email
+      else
+        data={data: "noemail"}
+        render :json => data
+      end
+    end
+  end
 
   def edit
   end
@@ -34,9 +47,12 @@ class PasswordResetsController < ApplicationController
       flash[:success]="パスワードを再設定しました。"
       redirect_to @user
     else
+      flash.now[:danger]="パスワードが不当です。"
       render 'edit'
     end
   end
+  
+  
   
   private
   

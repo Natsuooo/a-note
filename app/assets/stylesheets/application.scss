@@ -6,10 +6,15 @@ html, body{
   padding: 0;
 }
 //
-//.scroll-bar{
-//  overflow-x: hidden;
-//  overflow-y: hidden;
-//}
+.scroll-bar{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.scroll-show{
+  overflow-x: initial;
+  overflow-y: initial;
+}
 
 //body {
 //  position: relative;

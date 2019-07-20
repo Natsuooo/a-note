@@ -1,5 +1,5 @@
 $('.ajax-index').html("<%= j(render 'microposts/mobile_ajax_form') %>");
 $('.navbar').html("<%= j(render 'microposts/mobile_form_navbar') %>")
-var page=$('.mobile-history').html();
+var page=$('.history').html();
 history.pushState({page: page}, null, '');
 console.log('mobile_edit.js.erb');

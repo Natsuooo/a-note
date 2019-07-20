@@ -5,20 +5,19 @@
     <%= render 'layouts/rails_default' %>
     <%= render 'layouts/shim' %>
     <%= render 'layouts/head_custom' %>
+    
   </head>
 
-  <body>
-    <% if logged_in? %>
+  
+<% if logged_in? %>
+  
     <!-- ログインしていたときの画面 --> 
-     
-      <%= yield %>
-      
-    <% else %>
+    <%= yield %>
+<% else %>
+  <body>
     <!-- ログインしていないときの画面 --> 
-     
-      <%= render 'layouts/header' %>
-        <%= yield %>
-      
-    <% end %>
+    <%= yield %>
   </body>
+<% end %>
+  
 </html>
